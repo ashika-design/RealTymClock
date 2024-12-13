@@ -1,0 +1,21 @@
+module	RealTymClock_tb();
+		reg clk, rst, en, Sec_M_en, Min_L_en, Min_M_en, Hour_L_en, Hour_M_en; 
+		wire [6:0]Sec_L, Sec_M, Min_L, Min_M, Hour_L, Hour_M;
+	
+	RealTymClock RTC_Sec_L (.clk(clk), .rst(rst), .en(1'b1),    	     .Sec_L(Sec_L));
+	RealTymClock RTC_Sec_M (.clk(clk), .rst(rst), .Sec_M_en(Sec_M_en),   .Sec_M(Sec_M));
+	RealTymClock RTC_Min_L (.clk(clk), .rst(rst), .Min_L_en(Min_L_en),   .Min_L(Min_L));
+	RealTymClock RTC_Min_M (.clk(clk), .rst(rst), .Min_M_en(Min_M_en),   .Min_M(Min_M));
+	RealTymClock RTC_Hour_L(.clk(clk), .rst(rst), .Hour_L_en(Hour_L_en), .Hour_L(Hour_L));
+	RealTymClock RTC_Hour_M(.clk(clk), .rst(rst), .Hour_M_en(Hour_M_en), .Hour_M(Hour_M));
+
+	initial begin 
+		clk=0;
+	forever #5 clk= ~clk;
+	end
+
+	initial begin 
+	rst=0;		#10;
+	rst=1;	
+	end
+endmodule
